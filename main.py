@@ -2,7 +2,7 @@
 Author: ReaganWu wuzhuoyu11@gmail.com
 Date: 2023-10-07 18:11:13
 LastEditors: ReaganWu wuzhuoyu11@gmail.com
-LastEditTime: 2023-10-07 18:32:01
+LastEditTime: 2023-10-08 10:16:23
 FilePath: /MonteCarlo_Reagan/main.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -23,7 +23,7 @@ Nmc_max, Nmc_initial, source = generate_samples(5000, 500, int(1e7), dim)
 qnet = CustomNet(dim, 64, 0.51).to(device)
 qnet.assign_value()
 
-test_x, test_y = load_data("poisson10d.csv")
+test_x, test_y = load_data("Dataset/poisson10d.csv")
 initial_lr = 0.01
 
 # epoch_sample 函数
@@ -42,7 +42,7 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
 
 
 # 训练模型
-loss_list, test_loss, max_value_loss, min_value_loss = train_model(qnet, source, epoch_sample, optimizer, scheduler, dim, RHS_pde)
+loss_list, test_loss, max_value_loss, min_value_loss = train_model(qnet, source, epoch_sample, optimizer, scheduler, dim)
 
 # 可视化损失和结果
 # 添加可视化代码
